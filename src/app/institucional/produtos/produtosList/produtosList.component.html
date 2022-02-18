@@ -1,0 +1,25 @@
+  <div class="card-style">
+      <div class="card text-center align-center" style="width: 18rem;" [routerLink]="['detalhes',produto.id]">
+          <img src="/assets/{{produto.imagem}}" class="card-img-top" alt="{{produto.imagem}}">
+          <div class="card-body">
+          <h5 class="card-title">{{produto.nome | titlecase}}</h5>
+
+          <div [ngSwitch]="produto.promocao">
+              <p *ngSwitchCase="true">Promoção!</p>
+              <p *ngSwitchCase="false">Por Apenas:</p>
+          </div>
+
+          <div *ngIf="produto.promocao">
+              <p class="card-text"> De:<del> {{produto.valor | currency:'BRL':'symbol':'1.2-2':'Pt' }}</del>
+              {{produto.valorPromo | currency:'BRL':'symbol':'1.2-2':'Pt' }}
+              </p>
+          </div>
+          <div *ngIf="!produto.promocao">
+              <p class="card-text"> {{produto.valor | currency:'BRL':'symbol':'1.2-2':'Pt' }} </p>
+          </div>
+          </div>
+          <div class="card-footer">
+              <a href="#" class="btn btn-primary"><span class="bi bi-cart-fill"></span> Comprar</a>
+          </div>
+      </div>
+  </div>

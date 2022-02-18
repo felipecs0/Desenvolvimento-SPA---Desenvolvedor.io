@@ -1,0 +1,12 @@
+
+.card-style{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;   
+}
+.card{
+    margin:1rem;
+    cursor: pointer;
+
+}

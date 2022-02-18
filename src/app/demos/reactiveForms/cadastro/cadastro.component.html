@@ -1,0 +1,56 @@
+<div class="container main-container">
+    <h4>Demo Cadastro</h4>
+    <hr/>
+    <form novalidate (ngSubmit)="adicionarUsuario()" [formGroup]="cadastroForm">
+        <div class="form-horizontal">
+
+            <div class="form-group py-2">
+                <label class="col-md-2 control-label" for="nome">Nome Completo</label>
+                <div class="col-md-10">
+                    <input class="form-control" id="nome" required type="text" placeholder="Nome (requerido)" formControlName="nome" [ngClass]="{'is-invalid': cadastroForm.get('nome')?.errors && (cadastroForm.get('nome')?.dirty || cadastroForm.get('nome')?.touched)}"/>
+                    <span class="invalid-feedback" *ngIf="cadastroForm.get('nome')?.errors && (cadastroForm.get('nome')?.dirty || cadastroForm.get('nome')?.touched)"><p>Preencha o campo nome</p></span>
+                </div>
+            </div>
+
+            <div class="form-group py-2">
+                <label class="col-md-2 control-label">CPF</label>
+                <div class="col-md-10">
+                    <input class="form-control" id="cpf" required type="text" placeholder="CPF (requerido)" formControlName="cpf" cpf [textMask]="{mask: MASKS.cpf.textMask}"  [ngClass]="{'is-invalid': cadastroForm.get('cpf')?.errors && (cadastroForm.get('cpf')?.dirty || cadastroForm.get('cpf')?.touched)}"/>
+                    <span class="invalid-feedback" *ngIf="cadastroForm.get('cpf')?.errors?.required && (cadastroForm.get('cpf')?.dirty || cadastroForm.get('cpf')?.touched)"><p>Preencha o campo CPF</p></span>
+                    <span class="invalid-feedback" *ngIf="cadastroForm.get('cpf')?.errors?.cpf && (cadastroForm.get('cpf')?.dirty || cadastroForm.get('cpf')?.touched)"><p>CPF Invalido</p></span>
+                </div>
+            </div>
+
+            <div class="form-group py-2">
+                <label class="col-md-2 control-label" >Email</label>
+                <div class="col-md-10">
+                    <input class="form-control" id="email" required type="text" placeholder="Email (requerido)" formControlName="email" [ngClass]="{'is-invalid': cadastroForm.get('email')?.errors && (cadastroForm.get('email')?.dirty || cadastroForm.get('email')?.touched)}"/>
+                    <span class="invalid-feedback" *ngIf="cadastroForm.get('email')?.errors?.required && (cadastroForm.get('email')?.dirty || cadastroForm.get('email')?.touched)"><p>Preencha o campo email</p></span>
+                    <span class="invalid-feedback" *ngIf="cadastroForm.get('email')?.errors?.email && (cadastroForm.get('email')?.dirty || cadastroForm.get('email')?.touched)"><p>Formato de E-mail Invalido</p></span>
+                </div>
+            </div>
+
+            <div class="form-group py-2">
+                <label class="col-md-2 control-label">Senha</label>
+                <div class="col-md-10">
+                    <input class="form-control" id="senha" required type="password" placeholder="Senha (requerido)" formControlName="senha" [ngClass]="{'is-invalid': cadastroForm.get('senha')?.errors?.rangeLength && (cadastroForm.get('senha')?.dirty || cadastroForm.get('senha')?.touched)}" />
+                    <span class="invalid-feedback" *ngIf="cadastroForm.get('senha')?.errors?.rangeLength && (cadastroForm.get('senha')?.dirty || cadastroForm.get('senha')?.touched)"><p>Senha deve conter de 6 a 15 caracters</p></span>
+                </div>
+            </div>
+
+            <div class="form-group py-2">
+                <label class="col-md-2 control-label">Confirmar a Senha</label>
+                <div class="col-md-10">
+                    <input class="form-control" id="senhaConfirmacao" required type="password" placeholder="Confirmar senha (requerido)" formControlName="confirmarSenha" [ngClass]="{'is-invalid': cadastroForm.get('confirmarSenha')?.errors && (cadastroForm.get('confirmarSenha')?.dirty || cadastroForm.get('confirmarSenha')?.touched)}" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-4 py-4">
+                   <span><button class="btn btn-success" [disabled]="cadastroForm.invalid" type="submit">registrar</button></span>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
